@@ -17,6 +17,8 @@ import zipfile
 from lxml import etree
 from os.path import abspath, basename, join
 
+from numpy import unicode_
+
 try:
     from PIL import Image
 except ImportError:
@@ -27,7 +29,7 @@ try:
 except ImportError:
     TAGS = {}
 
-from exceptions import PendingDeprecationWarning
+from warnings import PendingDeprecationWarning
 from warnings import warn
 
 import logging
@@ -349,7 +351,7 @@ def table(contents, heading=True, colw=None, cwunit='dxa', tblw=0,
                 k = 'all' if 'all' in borders.keys() else b
                 attrs = {}
                 for a in borders[k].keys():
-                    attrs[a] = unicode(borders[k][a])
+                    attrs[a] = unicode_(borders[k][a])
                 borderelem = makeelement(b, attributes=attrs)
                 tableborders.append(borderelem)
         tableprops.append(tableborders)
